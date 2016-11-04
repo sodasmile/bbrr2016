@@ -27,13 +27,13 @@ def on_message(client, userdata, msg):
         print "mqtt: Increasing speed by 10."
         enable_encoders()  # Enable wheel rotation sensor
         result=increase_speed()
-        print "increase speed" + result==1 ? "success" : "FAILED"
+        print "increase speed" + "success" if result==1 else "FAILED"
 
     if a=='-':
         print "mqtt: Decreasing speed by 10."
         enable_encoders()  # Enable wheel rotation sensor
         result=decrease_speed()
-        print "decrease speed" + result==1 ? "success" : "FAILED"
+        print "decrease speed" + "success" if result==1 else "FAILED"
 
     elif a=='a':
         print "mqtt: Turning left"
