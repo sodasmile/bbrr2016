@@ -21,7 +21,7 @@ def on_message(client, userdata, msg):
     if a=='w1':
         print "mqtt: Moving forward one revolution"
         enable_encoders()  # Enable wheel rotation sensor
-        var result = enc_tgt(1,1,18)   # Move forward
+        result=enc_tgt(1,1,18)   # Move forward
 
 
     elif a=='a':
