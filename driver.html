@@ -77,10 +77,7 @@ socket = new SockJS( webSocketURL );
     </head>
     <body>
         <button onclick="client.connect(options);">1. Connect</button>
-        <button onclick="client.subscribe('testtopic/#', {qos: 2}); alert('Subscribed');">2. Subscribe</button>
-        <button onclick="publish('w','bishop',2);">Forward</button>
-        <button onclick="publish('s','bishop',2);">Backwards</button>
-        <button onclick="publish('x','bishop',2);">Stop</button>	
+        <button onclick="client.subscribe('bishop', {qos: 2}); alert('Subscribed');">2. Subscribe</button>
         <button onclick="client.disconnect();">(4. Disconnect)</button>
         <br/>
         <img id="camera" src=""/>
