@@ -6,6 +6,7 @@
     <head>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
         <script src="http://www.hivemq.com/demos/websocket-client/js/mqttws31.js" type="text/javascript"></script>
+<script src="sockjs-0.3.min.js"></script>
         <title>Bishop Controller</title>
         <script type="text/javascript">
          //Using the HiveMQ public Broker, with a random client Id
@@ -55,6 +56,22 @@ document.onkeypress=function(e){
 }
 
 
+// CAMERA
+$(document).ready(function() {
+webSocketURL = "http://bishop:98/robot_control";
+cameraURL = "http://bishop:8080/?action=stream";
+socket = new SockJS( webSocketURL );
+var shutdownComplete = false;
+$("#camera").attr( "src", cameraURL );
+// Add a periodic function to keep the camera and socket alive
+setInterval( function() {
+if ( socket.readyState == SockJS.OPEN ) {
+socket.send( "StartStreaming" );
+$("#camera").attr( "src", cameraURL );
+} else {
+socket = new SockJS( webSocketURL );
+} }, 1000 );
+});
 
     </script>
     </head>
@@ -65,6 +82,9 @@ document.onkeypress=function(e){
         <button onclick="publish('s','bishop',2);">Backwards</button>
         <button onclick="publish('x','bishop',2);">Stop</button>	
         <button onclick="client.disconnect();">(4. Disconnect)</button>
+        <br/>
+        <img id="camera" src=""/>
+
         <div id="messages"></div>
     </body>
 </html>
