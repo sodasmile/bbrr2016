@@ -23,6 +23,17 @@ def on_message(client, userdata, msg):
         enable_encoders()  # Enable wheel rotation sensor
         result=enc_tgt(1,1,18)   # Move forward
 
+    if a=='+':
+        print "mqtt: Increasing speed by 10."
+        enable_encoders()  # Enable wheel rotation sensor
+        result=increase_speed()
+        print "increase speed" + result==1 ? "success" : "FAILED"
+
+    if a=='-':
+        print "mqtt: Decreasing speed by 10."
+        enable_encoders()  # Enable wheel rotation sensor
+        result=decrease_speed()
+        print "decrease speed" + result==1 ? "success" : "FAILED"
 
     elif a=='a':
         print "mqtt: Turning left"
