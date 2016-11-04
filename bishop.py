@@ -14,7 +14,6 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     a=msg.payload
-    a=a.tolower()
     if a=='w':
         print "mqtt: Moving forward"
         fwd()   # Move forward
@@ -44,52 +43,10 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("192.168.1.57", 1883, 60)
+client.connect("localhost", 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
 client.loop_forever()
-
-
-print "Basic example for the GoPiGo Robot control"
-
-while True:
-
-    print "Enter the Command:",
-
-    a=raw_input()   # Fetch the input from the terminal
-    a=a.tolower()
-
-    if a=='w':
-
-        fwd()   # Move forward
-
-    elif a=='a':
-
-        left()  # Turn left
-
-    elif a=='d':
-
-        right() # Turn Right
-
-    elif a=='s':
-
-        bwd()   # Move back
-
-    elif a=='x':
-
-        stop()  # Stop
-
-    elif a=='z':
-
-        print "Exiting"       # Exit
-
-        sys.exit()
-
-    else:
-
-        print "Wrong Command, Please Enter Again"
-
-    time.sleep(.1)
