@@ -6,10 +6,10 @@
     <head>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
         <script src="http://www.hivemq.com/demos/websocket-client/js/mqttws31.js" type="text/javascript"></script>
-        <title>HiveMQ MQTT Websocket Demo App</title>
+        <title>Bishop Controller</title>
         <script type="text/javascript">
          //Using the HiveMQ public Broker, with a random client Id
- var client = new Messaging.Client("192.168.1.108", 8000, "myclientid_" + parseInt(Math.random() * 100, 10));
+ var client = new Messaging.Client("bishop", 8000, "myclientid_" + parseInt(Math.random() * 100, 10));
 
  //Gets  called if the websocket/mqtt connection gets disconnected for any reason
  client.onConnectionLost = function (responseObject) {
@@ -44,7 +44,19 @@
      message.qos = qos;
      client.send(message);
  }
-        </script>
+
+
+// KEYBOARD INTERFACE
+document.onkeypress=function(e){
+ var e=window.event || e
+ var k = String.fromCharCode(e.charCode)
+ publish(k, 'bishop', 2)
+ console.log("key pressed " + k)
+}
+
+
+
+    </script>
     </head>
     <body>
         <button onclick="client.connect(options);">1. Connect</button>
