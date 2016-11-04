@@ -27,6 +27,8 @@ while True:
 
     if a=='w':
         print "mqtt: Moving forward"
+    if a=='w1':
+        print "mqtt: Moving forward one revolution"
     elif a=='a':
         print "mqtt: Turning left"
     elif a=='d':

@@ -19,6 +19,10 @@ def on_message(client, userdata, msg):
         print "mqtt: Moving forward"
         fwd()   # Move forward
 
+    if a=='w1':
+        print "mqtt: Moving forward one revolution"
+        enc_tgt(1,1,18)   # Move forward
+
     elif a=='a':
         print "mqtt: Turning left"
         left()  # Turn left
