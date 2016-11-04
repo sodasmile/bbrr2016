@@ -14,7 +14,6 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     a=msg.payload
-    a=a.tolower()
     if a=='w':
         print "mqtt: Moving forward"
         fwd()   # Move forward
