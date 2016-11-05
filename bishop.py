@@ -50,7 +50,18 @@ def on_message(client, userdata, msg):
     elif a=='x':
         print "mqtt: Stopping"
         stop()  # Stop
-
+    elif a=='ver':
+        print "mqtt: Version"
+        print "---------------------------\n|",
+        ver=fw_ver()
+        if ver==-1:
+            print "| GoPiGo Not Found"
+            print "---------------------------"
+            exit()
+        print "GoPiGo Found"
+        print "| Firmware version:",ver
+        print "| Battery voltage :",volt(),"V"
+        print "---------------------------"
 
 client = mqtt.Client()
 client.on_connect = on_connect
