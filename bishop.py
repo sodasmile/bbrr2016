@@ -20,7 +20,20 @@ def on_message(client, userdata, msg):
 
     if a=='w1':
         print "mqtt: Moving forward one revolution"
-        enc_tgt(1,1,18)   # Move forward
+        enable_encoders()  # Enable wheel rotation sensor
+        result=enc_tgt(1,1,18)   # Move forward
+
+    if a=='+':
+        print "mqtt: Increasing speed by 10."
+        enable_encoders()  # Enable wheel rotation sensor
+        result=increase_speed()
+        print "increase speed" + "success" if result==1 else "FAILED"
+
+    if a=='-':
+        print "mqtt: Decreasing speed by 10."
+        enable_encoders()  # Enable wheel rotation sensor
+        result=decrease_speed()
+        print "decrease speed" + "success" if result==1 else "FAILED"
 
     elif a=='a':
         print "mqtt: Turning left"
@@ -37,7 +50,18 @@ def on_message(client, userdata, msg):
     elif a=='x':
         print "mqtt: Stopping"
         stop()  # Stop
-
+    elif a=='ver':
+        print "mqtt: Version"
+        print "---------------------------\n|",
+        ver=fw_ver()
+        if ver==-1:
+            print "| GoPiGo Not Found"
+            print "---------------------------"
+            exit()
+        print "GoPiGo Found"
+        print "| Firmware version:",ver
+        print "| Battery voltage :",volt(),"V"
+        print "---------------------------"
 
 client = mqtt.Client()
 client.on_connect = on_connect
