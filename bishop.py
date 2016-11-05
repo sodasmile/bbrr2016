@@ -50,6 +50,7 @@ def on_message(client, userdata, msg):
     elif a=='x':
         print "mqtt: Stopping"
         stop()  # Stop
+
     elif a=='ver':
         print "mqtt: Version"
         print "---------------------------\n|",
