@@ -14,6 +14,8 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     a=msg.payload
+    led_off(LED_L)
+    led_off(LED_R)
     if a=='w':
         print "mqtt: Moving forward"
         fwd()   # Move forward
@@ -37,10 +39,12 @@ def on_message(client, userdata, msg):
 
     elif a=='a':
         print "mqtt: Turning left"
+        led_on(LED_L)
         left()  # Turn left
 
     elif a=='d':
         print "mqtt: Turning right"
+        led_on(LED_R)
         right() # Turn Right
 
     elif a=='s':
